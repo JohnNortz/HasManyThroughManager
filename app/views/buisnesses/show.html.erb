@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @buisness.name %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @buisness.location %>
+</p>
+
+<p>
+  <strong>Products:</strong>
+  <%= @buisness.products %>
+</p>
+
+<p>
+|| Relations ||
+</p>
+
+Managers
+  <p>
+    <% @buisness.people.each do |person|%>
+      <% if person.relationships.map {|r| r.buisness == @buisness && r.relation == 'Manager' }.include?(true)%>
+        <div>
+          <p>
+            <td><%= person.name %></td> |
+            <td><%= link_to 'Show', person_path(person) %></td>
+          </p>
+        </div>
+      <% end %>
+    <% end %>
+  </p>
+
+Employees
+<p>
+  <% @buisness.people.each do |person|%>
+    <% if person.relationships.map {|r| r.buisness == @buisness && r.relation == 'Employee' }.include?(true)%>
+      <div>
+        <p>
+          <td><%= person.name %></td> |
+          <td><%= link_to 'Show', person_path(person) %></td>
+        </p>
+      </div>
+    <% end %>
+  <% end %>
+</p>
+
+<%= link_to 'New Relation', new_relationship_path %> |
+<%= link_to 'Edit', edit_buisness_path(@buisness) %> |
+<%= link_to 'Back', buisnesses_path %>
