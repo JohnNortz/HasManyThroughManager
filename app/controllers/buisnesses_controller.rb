@@ -1,7 +1,7 @@
 class BuisnessesController < ApplicationController
 #Controlls buisness related actions
   before_action :set_buisness, only: [:show, :edit, :update, :destroy]
-
+  #before_action :set_uploader, :new
 
   # GET /buisnesses
   # GET /buisnesses.json
@@ -72,6 +72,8 @@ class BuisnessesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def buisness_params
-      params.require(:buisness).permit(:name, :location, :products)
+      params.require(:buisness).permit(:name, :location, :products, :image)
     end
+
+
 end
